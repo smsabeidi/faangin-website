@@ -6,9 +6,10 @@ type BrandLogoProps = {
   className?: string;
   sizes: string;
   preload?: boolean;
+  tone?: "chrome" | "cloud";
 };
 
-export function BrandLogo({ className, sizes, preload = false }: BrandLogoProps) {
+export function BrandLogo({ className, sizes, preload = false, tone = "chrome" }: BrandLogoProps) {
   return (
     <Image
       src="/brand/faangin-logo.png"
@@ -18,6 +19,7 @@ export function BrandLogo({ className, sizes, preload = false }: BrandLogoProps)
       sizes={sizes}
       preload={preload}
       className={cn("h-auto", className)}
+      style={tone === "cloud" ? { filter: "brightness(0) invert(1)" } : undefined}
     />
   );
 }
