@@ -1,0 +1,48 @@
+/** User-supplied, actual faangin captures. WebP encoding is lossless; originals are archived in docs. */
+export const productCaptures = {
+  code: {
+    src: "/brand/captures/linked-list-code.webp",
+    width: 3024,
+    height: 1718,
+    browserChrome: false,
+    label: "Code",
+    description: "A Python approach to printing a linked list in reverse.",
+    alt: "Actual faangin app showing a stack-based Python solution over a HackerRank linked-list practice problem.",
+  },
+  capture: {
+    src: "/brand/captures/capture-ready.webp",
+    width: 3024,
+    height: 1964,
+    browserChrome: true,
+    label: "Capture",
+    description: "The capture-ready faangin overlay alongside the coding problem.",
+    alt: "Actual faangin capture-ready overlay open over a HackerRank linked-list practice problem.",
+  },
+  approach: {
+    src: "/brand/captures/linked-list-approach.webp",
+    width: 3024,
+    height: 1964,
+    browserChrome: true,
+    label: "Approach",
+    description: "The explanation and assumptions, with the original problem in view.",
+    alt: "Actual faangin app explaining a stack-based approach and assumptions for printing linked-list values in reverse.",
+  },
+  compact: {
+    src: "/brand/captures/compact-overlay.webp",
+    width: 3024,
+    height: 1964,
+    browserChrome: true,
+    label: "Compact",
+    description: "The coding workspace with faangin collapsed to its compact bar.",
+    alt: "Actual faangin compact bar above the HackerRank problem and code editor.",
+  },
+  expanded: {
+    src: "/brand/captures/expanded-guidance.webp",
+    width: 3024,
+    height: 1964,
+    browserChrome: true,
+    label: "Expanded guidance",
+    description: "The expanded faangin guidance panel over the coding workspace.",
+    alt: "Actual faangin expanded guidance explaining the linked-list approach over a HackerRank practice problem.",
+  },
+} as const;

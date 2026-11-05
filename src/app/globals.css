@@ -1,0 +1,563 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* cluely.com uses a class-based dark variant (only used to swap the footer wordmark). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-forma: var(--font-forma), Arial, Helvetica, sans-serif;
+  --default-font-family: var(--font-sans);
+
+  /* shadcn-style tokens, resolved through hsl(var(--x)) exactly like the source site.
+     NOTE: --foreground is a hex on the source site, so hsl(var(--foreground)) is invalid and
+     `text-foreground` effectively inherits (renders black). This is reproduced on purpose. */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Cluely brand palette (values copied from the production stylesheet) */
+  --color-primary-blue: #3152f4;
+  --color-secondary-blue: #dde2ee;
+  --color-blue: #4d96ff;
+  --color-gray-5: #0b0c0e;
+  --color-gray-12: #1c1d22;
+  --color-gray-20: #2e3038;
+  --color-gray-30: #464853;
+  --color-gray-40: #5e616e;
+  --color-gray-50: #777a88;
+  --color-gray-60: #9194a1;
+  --color-gray-70: #aaadbb;
+  --color-gray-80: #c7c9d1;
+  --color-gray-90: #e2e3e9;
+  --color-gray-94: #eeeff1;
+  --color-gray-98: #f9fafb;
+
+  /* numeric text sizes (font-size only, no line-height — matches source) */
+  --text-11: 0.6875rem;
+  --text-12: 0.75rem;
+  --text-13: 0.8125rem;
+  --text-14: 0.875rem;
+  --text-15: 0.9375rem;
+  --text-18: 1.125rem;
+  --text-20: 1.25rem;
+  --text-22: 1.375rem;
+  --text-24: 1.5rem;
+  --text-28: 1.75rem;
+  --text-32: 2rem;
+  --text-36: 2.25rem;
+  --text-40: 2.5rem;
+  --text-48: 3rem;
+
+  --tracking-2: -0.02em;
+  --tracking-4: -0.04em;
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: #040406;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 215 90% 81%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --radius: 0.375rem;
+  --number-flow-mask-height: 0.25rem;
+  --number-flow-mask-width: 0.25rem;
+  --sticky-header-height: 3.25rem;
+  --footer-safe-area-spacing: 0rem;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body:has([data-slot="documentation-menu-trigger"]) {
+    --footer-safe-area-spacing: 3.25rem;
+  }
+  :where(:focus-visible):focus-visible {
+    outline-style: var(--tw-outline-style, solid);
+    outline-offset: 2px;
+    outline-width: 2px;
+    outline-color: #0b0c0e;
+  }
+  a:not([class]) {
+    border-radius: 0.25rem;
+  }
+  a:not([class]):focus-visible {
+    outline-offset: 0;
+  }
+  [role="button"]:not(:disabled),
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------- component classes (unlayered on the source site, so they win over utilities) ---------- */
+
+.card-styles {
+  aspect-ratio: 426 / 406;
+  background-image: radial-gradient(92.09% 126.39% at 50% 100%, #dde2ee 58.91%, #bbc5dd 100%);
+  border-radius: 16px;
+  max-width: 320px;
+  margin-inline: auto;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 48rem) {
+  .card-styles {
+    border-radius: 20px;
+    max-width: none;
+  }
+}
+@media (min-width: 80rem) {
+  .card-styles {
+    border-radius: var(--radius-3xl);
+  }
+}
+
+.gradient-text {
+  color: #0000;
+  -webkit-background-clip: text;
+  background-clip: text;
+  width: fit-content;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.cluely-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #fff3 transparent;
+}
+.cluely-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.cluely-scrollbar::-webkit-scrollbar-track {
+  background: 0 0;
+}
+.cluely-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #fff3;
+  border-radius: 9999px;
+}
+.cluely-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff59;
+}
+
+/* blue gradient button (CTA) */
+.blue-gradient-button {
+  -webkit-backdrop-filter: blur(0.5px);
+  backdrop-filter: blur(0.5px);
+  background: 0 0;
+  position: relative;
+  box-shadow: inset -1px -1px 4px #000f9aa6, 5px 7px 7px #7785a46e, 1px 1px 3px #0003, inset -0.5px -0.5px 1px #ffffff59;
+}
+.blue-gradient-button:before {
+  content: "";
+  z-index: -1;
+  filter: blur(0.3px);
+  background: radial-gradient(114.65% 114.65% at 9.73% 17.27%, #77c6ffcc 15.38%, #6f7fdc 100%);
+  border-radius: 8px;
+  position: absolute;
+  inset: -0.5px;
+}
+.inner-button-gradient-wrapper {
+  background: 0 0;
+  border-radius: 6px;
+  box-shadow: inset 4px 4px 4px #131ae41a, inset -3px -3px 4px #bfe5fb66, 20px 20px 24px #94acf366;
+}
+.inner-button-gradient-wrapper-no-inset {
+  background: 0 0;
+  border-radius: 6px;
+  box-shadow: 20px 20px 24px #94acf366;
+}
+.inner-button-gradient-background {
+  content: "";
+  z-index: -1;
+  background-blend-mode: overlay;
+  filter: blur(0.3px);
+  background: radial-gradient(98.32% 98.32% at 65.61% 81.79%, #fff9 0, #fff0 100%), radial-gradient(85.96% 85.96% at 9.73% 17.27%, #497ee9 0, #648bec 100%);
+  border-radius: 6px;
+  position: absolute;
+  inset: 0;
+}
+.inner-button-gradient-noise {
+  content: "";
+  opacity: 0.3;
+  z-index: 0;
+  background: url(/sites/cluely-com-efd0578a/shared/patterns/noise-white.png) 0 0 / 2rem 2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.inner-button-gradient-animation-wrapper {
+  background: 0 0;
+  border-radius: 6px;
+  box-shadow: 20px 17px 24px #94acf366;
+}
+.inner-button-gradient-animation-background {
+  content: "";
+  z-index: -1;
+  background-blend-mode: overlay;
+  filter: blur(0.3px);
+  background: radial-gradient(98.32% 98.32% at 65.61% 81.79%, #fff0 9.13%, #fffc 100%), radial-gradient(85.96% 85.96% at 9.73% 17.27%, #648bec 0, #497ee9 100%);
+  border-radius: 6px;
+  position: absolute;
+  inset: 0;
+}
+.inner-button-gradient-animation-noise {
+  content: "";
+  opacity: 0.3;
+  z-index: 0;
+  background: url(/sites/cluely-com-efd0578a/shared/patterns/noise-white.png) 0 0 / 2rem 2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.inner-button-hover-gradient {
+  opacity: 0;
+  z-index: -1;
+  background-blend-mode: overlay;
+  z-index: 0;
+  filter: blur(0.3px);
+  background: radial-gradient(98.32% 98.32% at 65.61% 81.79%, #fff9 0, #fff0 100%), radial-gradient(85.96% 85.96% at 9.73% 17.27%, #144ec2 0, #648bec 100%);
+  border-radius: 6px;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  inset: 0;
+}
+.blue-gradient-button:hover .inner-button-hover-gradient {
+  opacity: 1;
+}
+.blurred-border {
+  opacity: 0.45;
+  z-index: 2;
+  background: linear-gradient(176.87deg, #ffffff80 8.56%, #fff0 85.04%);
+  border-radius: 6px;
+  padding: 3px;
+  -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  -webkit-mask-position: 0 0, 0 0;
+  -webkit-mask-size: auto, auto;
+  -webkit-mask-repeat: repeat, repeat;
+  -webkit-mask-clip: content-box, border-box;
+  -webkit-mask-origin: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-source-type: auto, auto;
+  mask-mode: match-source, match-source;
+}
+
+/* black gradient button (unused on the home page but part of the shared button) */
+.black-gradient-button {
+  -webkit-backdrop-filter: blur(0.5px);
+  backdrop-filter: blur(0.5px);
+  background: 0 0;
+  position: relative;
+  box-shadow: inset -1px -1px 4px #000000a6, 5px 7px 7px #7785a46e, inset -0.5px -0.5px 1px #ffffff59, 1px 1px 3px #0003;
+}
+.black-gradient-button:before {
+  content: "";
+  z-index: -1;
+  filter: blur(0.3px);
+  background: radial-gradient(85.96% 85.96% at 9.73% 17.27%, #434343cc 15.38%, #000 100%);
+  border-radius: 8px;
+  position: absolute;
+  inset: -0.5px;
+}
+.inner-black-button-gradient {
+  background: 0 0;
+  border-radius: 6px;
+  box-shadow: inset 4px 4px 4px #1c1d22, inset -3px -3px 4px #464853, 20px 20px 24px #85868b66;
+}
+.inner-black-button-gradient:before {
+  content: "";
+  z-index: -1;
+  background-blend-mode: overlay;
+  filter: blur(0.3px);
+  background: radial-gradient(85.96% 85.96% at 9.73% 17.27%, #464853 0, #1c1d22 100%), radial-gradient(29.9% 135.23% at 83.67% 104.55%, #ffffff1a 0, #fff0 100%);
+  border-radius: 6px;
+  position: absolute;
+  inset: 0;
+}
+.inner-black-button-gradient:after {
+  content: "";
+  opacity: 0.4;
+  z-index: 0;
+  background: url(/sites/cluely-com-efd0578a/shared/patterns/noise-black.png) 0 0 / 2rem 2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.blurred-border-black {
+  opacity: 0.3;
+  z-index: 2;
+  background: linear-gradient(176.87deg, #ffffff80 8.56%, #fff0 85.04%);
+  border-radius: 6px;
+  padding: 3px;
+  -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  -webkit-mask-position: 0 0, 0 0;
+  -webkit-mask-size: auto, auto;
+  -webkit-mask-repeat: repeat, repeat;
+  -webkit-mask-clip: content-box, border-box;
+  -webkit-mask-origin: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-source-type: auto, auto;
+  mask-mode: match-source, match-source;
+}
+.inner-black-button-hover-gradient {
+  opacity: 0;
+  z-index: -1;
+  background-blend-mode: overlay;
+  z-index: 0;
+  filter: blur(0.3px);
+  background: radial-gradient(85.96% 85.96% at 9.73% 17.27%, #262830 0, #1c1d22 100%), radial-gradient(29.9% 135.23% at 83.67% 104.55%, #ffffff1a 0, #fff0 100%);
+  border-radius: 6px;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  inset: 0;
+}
+.black-gradient-button:hover .inner-black-button-hover-gradient {
+  opacity: 1;
+}
+:is(.black-gradient-button, .blue-gradient-button:focus-visible):focus-visible {
+  outline-style: var(--tw-outline-style, solid);
+  outline-offset: 2px;
+  outline-width: 2px;
+  outline-color: #0b0c0e;
+}
+
+/* purple gradient button (hero / header / mobile drawer trigger) */
+.purple-gradient-button {
+  background-blend-mode: overlay, normal;
+  background: radial-gradient(101.79% 101.79% at 65.61% 81.79%, #fff9 0, #fff0 100%), radial-gradient(114.65% 114.65% at 9.73% 17.27%, #1e82e0 0, #1c38ea 100%);
+  transition: transform 0.16s ease-out;
+  box-shadow: 20px 20px 24px #94acf366, inset -3px -3px 4px #bfe5fb66, inset 4px 4px 4px #131ae41a;
+}
+@media (min-width: 768px) {
+  .purple-gradient-button {
+    border-radius: 12px;
+    font-size: 16px;
+  }
+  .purple-gradient-button .blurred-border {
+    border-radius: 12px;
+  }
+}
+.purple-gradient-button .blurred-border {
+  border-radius: 10px;
+}
+.purple-gradient-button:after {
+  content: "";
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(101.79% 101.79% at 65.61% 81.79%, #fff9 0);
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  inset: 1px;
+}
+@media (min-width: 768px) {
+  .purple-gradient-button:hover:after {
+    opacity: 0.4;
+  }
+  .purple-gradient-button:hover {
+    transform: scale(1.03);
+  }
+}
+.purple-gradient-button:active {
+  transform: scale(0.97);
+}
+
+@keyframes desktop-campaign-cta-pulse {
+  0%, 24%, to {
+    transform: scale(1);
+  }
+  9% {
+    transform: scale(1.065);
+  }
+  16% {
+    transform: scale(1.035);
+  }
+}
+
+input.hide-number-arrows::-webkit-inner-spin-button,
+input.hide-number-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"].hide-number-arrows {
+  -moz-appearance: textfield;
+}
+
+/* The Air sky is one viewport-sized layer behind the whole homepage. */
+.hero-v2 {
+  position: relative;
+}
+.air-sky-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  height: 100svh;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(180deg, #0563e9, #33b6ff);
+}
+.air-sky-background canvas {
+  display: block;
+  opacity: 0;
+}
+.air-sky-background canvas[data-loaded="true"] {
+  opacity: 1;
+}
+.air-sky-background::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: #061d44;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.air-sky-background[data-sky-mode="morning"]::before,
+.air-sky-background[data-sky-mode="evening"]::before {
+  opacity: 0.35;
+}
+.air-sky-background::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #061d4473, #061d4459 55%, #061d4466),
+    linear-gradient(90deg, #1b1b1b66, transparent 30%, transparent 70%, #1b1b1b66);
+}
+@media (prefers-reduced-motion: reduce) {
+  .air-sky-background::before { transition: none; }
+}
+
+/* Only text that sits directly on the sky changes color; demo/card surfaces retain their own palette. */
+.air-sky-content #how-it-works > h2,
+.air-sky-content #interview-notes > div:first-child > h2,
+.air-sky-content #undetectability > div > div:first-child > h2,
+.air-sky-content #interview-support > div > div:nth-child(2) > h2,
+.air-sky-content #faq > div > h2,
+.air-sky-content > div:last-child h3,
+.air-sky-content > div:last-child p {
+  color: #fff;
+  background-image: none;
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 0 2px 12px #06275199, 0 1px 3px #06275180;
+}
+.air-sky-content #interview-notes > div:first-child > p,
+.air-sky-content #undetectability > div > div:first-child > p,
+.air-sky-content #undetectability div:has(> p > strong),
+.air-sky-content #undetectability div > p > strong,
+.air-sky-content #interview-support > div > div:nth-child(2),
+.air-sky-content #interview-support [class*="text-zinc-500"],
+.air-sky-content #faq [data-slot="accordion-trigger"],
+.air-sky-content #faq [data-slot="accordion-trigger"] svg,
+.air-sky-content #faq [data-slot="accordion-content"] .text-gray-30 {
+  color: #f1f7ff;
+  text-shadow: 0 1px 8px #062751b3, 0 1px 2px #06275199;
+}
+.air-sky-content #faq [data-slot="accordion-item"] {
+  border-color: #ffffff40;
+}
+.air-sky-content #faq :focus-visible {
+  outline-color: #fff;
+}
+.primary-fill {
+  background: radial-gradient(179.05% 132.83% at 46.18% -23.44%, #1562df 0, #0c26a8 100%);
+  box-shadow: 0 0 0 0.678px #0c44a1, inset 0 -1.355px #022c70, inset 0 0.678px #81b6ff, 0 9px 27.9px #6b6de7c4, 0 178.891px 50.144px #0000, 0 115.195px 46.078px #00000005, 0 65.051px 39.302px #00000014, 0 28.46px 28.46px #00000021, 0 6.776px 16.263px #00000029;
+}
+@keyframes hero-word-rise {
+  0% {
+    transform: translateY(1.25em);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-up,
+  .hero-word-rise {
+    animation: none !important;
+  }
+}
+
+@keyframes logos {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}

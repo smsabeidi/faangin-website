@@ -1,0 +1,53 @@
+.faangin-reasoning {
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  padding: 28px;
+  border: 1px solid #ffffff30;
+  border-radius: 32px;
+  background: radial-gradient(110% 110% at 100% 0, #b8d1f326, transparent 65%), linear-gradient(145deg, #223d64eb, #35547cdb);
+  box-shadow: inset 1px 1px 6px #ffffff21, 0 8px 30px #12335b0d;
+  color: #fff;
+  scroll-margin-top: 96px;
+}
+.faangin-reasoning__intro { display: flex; flex-direction: column; gap: 13px; }
+.faangin-reasoning__eyebrow { display: inline-flex; align-items: center; gap: 7px; color: #e5efff; font-size: 10px; font-weight: 500; line-height: 1.2; letter-spacing: 0.08em; text-transform: uppercase; }
+.faangin-reasoning__intro h3 { margin: 0; color: #fff; font-size: clamp(29px, 7.4cqi, 38px); font-weight: 500; line-height: 1.08; letter-spacing: -0.045em; }
+.faangin-reasoning__intro p { max-width: 470px; margin: 0; color: #f0f6ff; font-size: 14px; font-weight: 400; line-height: 1.6; letter-spacing: -0.01em; }
+.faangin-reasoning__benefits { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.faangin-reasoning__benefits li { display: inline-flex; min-height: 28px; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid #e6efff35; border-radius: 7px; background: #d3e4ff0f; color: #f3f7ff; font-size: 10px; font-weight: 400; line-height: 1; }
+.faangin-reasoning__benefits svg { flex: 0 0 auto; color: #d4e7ff; }
+.faangin-reasoning__proof { width: 100%; max-width: 390px; min-width: 0; align-self: center; margin: 0; }
+.faangin-reasoning__capture { position: relative; display: block; aspect-ratio: 1290 / 1170; overflow: hidden; border: 1px solid #e2edff9c; border-radius: 15px; background: #e5eaf2; box-shadow: 0 8px 22px #1232551f; cursor: zoom-in; }
+.faangin-reasoning__capture:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+/* Present the actual app panel closely, without changing any source pixels. */
+.faangin-reasoning__image { position: absolute; top: -41.62%; left: -66.28%; width: 234.42%; max-width: none; height: auto; }
+.faangin-reasoning__expand { position: absolute; right: 9px; bottom: 9px; display: inline-flex; min-height: 29px; align-items: center; gap: 5px; padding: 6px 8px; border: 1px solid #e1ebff6b; border-radius: 6px; background: #243e61eb; color: #f5f9ff; font-size: 9px; font-weight: 500; line-height: 1; }
+.faangin-reasoning__capture:hover .faangin-reasoning__expand { background: #385e8a; }
+.faangin-reasoning__proof figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 9px; color: #e7f0ff; font-size: 9px; line-height: 1.4; }
+.faangin-reasoning__proof figcaption span { color: #c0d6f2; }
+.faangin-reasoning__footer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; margin-top: auto; padding-top: 17px; border-top: 1px solid #e2ecff33; }
+.faangin-reasoning__cta { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 12px; padding: 12px 14px; border: 1px solid #f4f8ffb3; border-radius: 9px; background: #f1f7ff; box-shadow: 0 1px 3px #0a2d591a; color: #284e7e; font-size: 11px; font-weight: 500; line-height: 1; }
+.faangin-reasoning__cta:hover { background: #fff; color: #1a3b68; }
+.faangin-reasoning__cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media (min-width: 1024px) {
+  .faangin-reasoning { padding: 32px; }
+  .faangin-reasoning__intro p { font-size: 15px; }
+}
+@media (min-width: 1280px) {
+  .faangin-reasoning { gap: 22px; padding: 40px; }
+  .faangin-reasoning__intro p { font-size: 16px; }
+  .faangin-reasoning__benefits li { font-size: 11px; }
+  .faangin-reasoning__cta { font-size: 12px; }
+}
+@container (max-width: 280px) {
+  .faangin-reasoning__intro h3 { font-size: 28px; }
+  .faangin-reasoning__intro p { font-size: 13px; }
+  .faangin-reasoning__benefits { gap: 6px; }
+  .faangin-reasoning__benefits li { padding: 6px 7px; font-size: 9px; }
+  .faangin-reasoning__footer { gap: 9px; }
+}

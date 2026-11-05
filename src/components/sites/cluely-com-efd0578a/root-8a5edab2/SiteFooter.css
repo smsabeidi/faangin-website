@@ -1,0 +1,98 @@
+.air-footer-footer {
+  position: relative;
+  height: 150svh;
+  min-height: 900px;
+  color: #fff;
+  isolation: isolate;
+}
+.air-footer-scene {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+}
+.air-footer-wordmark {
+  position: absolute;
+  z-index: 1;
+  top: 11svh;
+  left: 50%;
+  width: 68vw;
+  max-width: 1120px;
+  height: 48svh;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 12px 24px #082a6420);
+}
+.air-footer-wordmark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+.air-footer-wordmark:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 8px;
+  border-radius: 12px;
+}
+.air-footer-links {
+  position: absolute;
+  z-index: 3;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: end;
+  gap: 28px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  text-shadow: 0 1px 5px #082d0dcc;
+}
+.air-footer-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.air-footer-link-groups { display: flex; flex-direction: column; gap: 16px; }
+.air-footer-legal { display: flex; flex-wrap: wrap; gap: 10px 24px; padding-top: 14px; border-top: 1px solid #ffffff40; }
+.air-footer-links a {
+  width: fit-content;
+  transition: opacity 180ms ease;
+}
+.air-footer-links a:hover { opacity: 0.7; }
+.air-footer-links a:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+}
+.air-footer-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 22px;
+}
+.air-footer-details p { font-size: 12px; line-height: 18px; }
+.air-footer-shortcuts {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  width: min(100%, 310px);
+}
+.air-footer-shortcuts a {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .air-footer-footer { min-height: 1100px; }
+  .air-footer-scene { min-height: 700px; }
+  .air-footer-wordmark { top: 9svh; width: 78vw; height: 29svh; }
+  .air-footer-links { right: 16px; left: 16px; grid-template-columns: 1fr; gap: 24px; }
+  .air-footer-navigation { flex-direction: column; align-items: center; gap: 8px; }
+  .air-footer-legal { justify-content: center; gap: 8px 20px; }
+  .air-footer-details { align-items: center; gap: 16px; }
+  .air-footer-shortcuts { width: 100%; max-width: 358px; gap: 12px; }
+}

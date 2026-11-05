@@ -1,0 +1,2 @@
+8ee32f1ddd3ef59809d14b3cad25ee3430087e92ccc7a950f881c05a110e3012  Faangin-0.4.3-arm64.dmg
+5cdeb891f364b40667fd0e0c0b10a1cad3522f8fdb132b1e62c3369abcc5558a  Faangin-0.4.3-Windows-x64-setup.exe

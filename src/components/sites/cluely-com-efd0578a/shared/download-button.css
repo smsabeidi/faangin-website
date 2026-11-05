@@ -1,0 +1,91 @@
+.faangin-download {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.faangin-download-button,
+.faangin-download-button[data-desktop-download] {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
+  padding: 13px 24px;
+  border: 1px solid #458aff;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #347ff5, #1761df);
+  box-shadow: inset 0 1px 0 #ffffff38, 0 4px 12px #073c9226;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  cursor: pointer;
+  transition: background 150ms ease, box-shadow 150ms ease;
+}
+
+.faangin-download-button:hover,
+.faangin-download-button[data-desktop-download]:hover {
+  background: linear-gradient(180deg, #428cff, #1c68ed);
+  box-shadow: inset 0 1px 0 #ffffff38, 0 5px 16px #073c9233;
+  opacity: 1;
+}
+
+.faangin-download-button:active { background: #1557ce; }
+.faangin-download-button:focus-visible,
+.faangin-download-button[data-desktop-download]:focus-visible { outline: 3px solid #8cc7ff; outline-offset: 4px; }
+.faangin-download .faangin-download-button { width: 100%; }
+.faangin-download-prominent,
+.faangin-download-prominent[data-desktop-download] {
+  min-width: 260px;
+  min-height: 72px;
+  gap: 12px;
+  padding: 18px 28px;
+  border: 1px solid #69a8ff;
+  border-radius: 22px;
+  background: radial-gradient(110% 160% at 50% 0%, #69aeff66, transparent 66%), linear-gradient(180deg, #347ff5, #1761df);
+  box-shadow: inset 0 1px 2px #c3e6ff99, inset 0 -2px 4px #0744a666, 0 6px 24px #1263de45;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.faangin-download-prominent .faangin-download-icon { width: 28px; height: 28px; }
+.faangin-download-prominent:hover,
+.faangin-download-prominent[data-desktop-download]:hover { background: radial-gradient(110% 160% at 50% 0%, #9ecbff80, transparent 66%), linear-gradient(180deg, #428cff, #1c68ed); box-shadow: inset 0 1px 2px #c3e6ff99, inset 0 -2px 4px #0744a666, 0 8px 28px #1263de55; }
+.faangin-download-icon { flex: 0 0 auto; width: 23px; height: 23px; }
+.faangin-download-chevron { width: 16px; height: 16px; }
+.faangin-download-requirements { max-width: 290px; color: inherit; font-size: 12px; line-height: 1.5; text-align: center; opacity: 0.86; }
+
+.faangin-download-availability {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 12px 16px;
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.faangin-download-chooser { position: relative; width: max-content; max-width: 100%; }
+.faangin-download-chooser > summary { list-style: none; }
+.faangin-download-chooser > summary::-webkit-details-marker { display: none; }
+.faangin-download-chooser[open] .faangin-download-chevron { transform: rotate(180deg); }
+.faangin-download-options { display: grid; gap: 18px; margin-top: 12px; padding: 18px; border: 1px solid #d7e4f8; border-radius: 16px; background: #fff; box-shadow: 0 8px 24px #0a2d5e21; color: #38465e; }
+.faangin-download-options > div { display: grid; gap: 7px; }
+.faangin-download-options .faangin-download-button { width: 100%; }
+.faangin-download-options p { max-width: 260px; font-size: 12px; line-height: 1.5; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faangin-download-button { transition: none; }
+}

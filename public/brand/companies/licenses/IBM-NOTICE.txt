@@ -1,0 +1,10 @@
+IBM logo SVG source: Carbon for IBM.com
+Copyright IBM Corp.
+https://github.com/carbon-design-system/carbon-for-ibm-dotcom
+
+This directory's ../ibm.svg adapts IBM-8bar-logo--h23-white.svg by retaining
+the original viewBox and first logo path, removing a redundant mask and
+color rectangle, and setting a single #f3f9ff fill. Modified October 24, 2026.
+
+Source code license: Apache License, Version 2.0; see IBM-APACHE-2.0.txt.
+The license does not grant trademark rights. IBM trademarks belong to IBM.
