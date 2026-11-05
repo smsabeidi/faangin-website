@@ -4,6 +4,8 @@
 import argparse
 from html.parser import HTMLParser
 import json
+from pathlib import Path
+import ssl
 import sys
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
@@ -14,11 +16,16 @@ import xml.etree.ElementTree as ET
 
 CANONICAL_ORIGIN = "https://www.faangin.com"
 PAGE_PATHS = ("/", "/coding-interview", "/system-design-interview", "/behavioral-interview")
+TLS_CONTEXT = ssl.create_default_context()
+# Some macOS Python installs omit their own CA bundle. Use the system trust
+# bundle in that case, while retaining certificate and hostname verification.
+if sys.platform == "darwin" and not ssl.get_default_verify_paths().cafile and Path("/etc/ssl/cert.pem").is_file():
+    TLS_CONTEXT.load_verify_locations("/etc/ssl/cert.pem")
 
 
 def fetch(url):
     request = Request(url, headers={"User-Agent": "Faangin-SEO-Check/1.0"})
-    with urlopen(request, timeout=25) as response:
+    with urlopen(request, timeout=25, context=TLS_CONTEXT) as response:
         if response.status != 200:
             raise ValueError(f"HTTP {response.status}")
         return response.read().decode("utf-8", errors="replace"), response.headers
